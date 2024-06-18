@@ -13,7 +13,7 @@ import application.model.Genero;
 import application.repository.GeneroRepository;
 
 @Controller
-@RequestMapping("/genero")
+@RequestMapping("/generos")
 public class GeneroController {
     @Autowired
     private GeneroRepository generoRepo;
