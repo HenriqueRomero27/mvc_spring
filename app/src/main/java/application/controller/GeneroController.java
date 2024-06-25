@@ -61,7 +61,7 @@ public class GeneroController {
     }
 
     @RequestMapping("/delete")
-    public String delete(@RequestParam("id") long id, Model ui) {
+    public String delete(@RequestParam("id") Long id, Model ui) {
         Optional<Genero> result = generoRepo.findById(id);
         if(result.isPresent()) {
             ui.addAttribute("genero", result.get());
@@ -72,7 +72,7 @@ public class GeneroController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String delete(@RequestParam("id") long id) {
+    public String delete(@RequestParam("id") Long id) {
         generoRepo.deleteById(id);
         return "redirect:/generos/list";
     }

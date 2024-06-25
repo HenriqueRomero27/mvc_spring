@@ -20,9 +20,9 @@
                     <label for="multiplayer" class="form-label">Multiplayer</label>
                     <input type="text" id="multiplayer" name="multiplayer" class="form-control" placeholder="Digite se o jogo é muiltiplayer ou não"  />
                 </div>
-                <label class="form-label" for="generos">Selecione o gênero do jogo</label>
+                <label class="form-label" for="genero">Selecione o gênero do jogo</label>
                 <select class="form-select" name="genero" id="generos">
-                    <c:forEach var="item" items="${generos}">
+                    <c:forEach var="item" items="${genero}">
                         <option value="${item.id}">${item.nome}</option>
                     </c:forEach>
                 </select>

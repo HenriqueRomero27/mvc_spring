@@ -36,8 +36,8 @@ public class JogoController {
     }
     
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public String insert(@RequestParam("titulo") String titulo, @RequestParam("multiplayer") Boolean multiplayer, @RequestParam("genero_id") Long genero_id) {
-        Optional<Genero> resultado = generosRepo.findById(genero_id);
+    public String insert(@RequestParam("titulo") String titulo, @RequestParam("multiplayer") Boolean multiplayer, @RequestParam("genero") Long generoId) {
+        Optional<Genero> resultado = generosRepo.findById(generoId);
         if(resultado.isPresent()) {
             Jogo jogo = new Jogo();
             jogo.setTitulo(titulo);
@@ -64,10 +64,10 @@ public class JogoController {
 
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@RequestParam("id") Long id, @RequestParam("titulo") String titulo, @RequestParam("multiplayer") Boolean multiplayer, @RequestParam("genero_id") Long genero_id) {
+    public String update(@RequestParam("id") Long id, @RequestParam("titulo") String titulo, @RequestParam("multiplayer") Boolean multiplayer, @RequestParam("genero") Long generoId) {
         Optional<Jogo> result = jogosRepo.findById(id);
         if(result.isPresent()) {
-            Optional<Genero> resultGenero = generosRepo.findById(genero_id);
+            Optional<Genero> resultGenero = generosRepo.findById(generoId);
             if(resultGenero.isPresent()) {
                 result.get().setTitulo(titulo);
                 result.get().setGenero(resultGenero.get());
@@ -76,4 +76,20 @@ public class JogoController {
         }
         return "redirect:/jogos/list";
     } 
+
+    @RequestMapping("/delete")
+    public String delete(Model ui, @RequestParam("id") long id) { Optional<Jogo> resultado = jogosRepo.findById(id);
+        if (resultado.isPresent()) {
+            ui.addAttribute("jogo", resultado.get());
+            return "/jogos/delete";
+        }
+        return "redirect:/jogos/list";  
+    }
+ 
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String delete(@RequestParam("id") long id) {
+        jogosRepo.deleteById(id);
+    
+        return "redirect:/jogos/list";
+    }
 }

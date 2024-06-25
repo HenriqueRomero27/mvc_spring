@@ -15,7 +15,7 @@
             
             <form action="/jogos/delete" method="post">
                 <input type="hidden" name="id" value="${jogo.id}">
-                <p>Tem certeza que deseja remover o livro ${livro.titulo}?</p>
+                <p>Tem certeza que deseja remover o jogo ${jogo.titulo}?</p>
                 <a href="/jogos/list" class="btn btn-secondary">Voltar</a>
                 <button type="submit" class="btn btn-danger">Remover</button>
             </form>

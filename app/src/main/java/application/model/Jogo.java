@@ -17,7 +17,7 @@ public class Jogo {
 
     private String titulo;
     private Boolean multiplayer;
-
+    
     @ManyToOne
     @JoinColumn(name = "genero_id", nullable = false)
     private Genero genero;
